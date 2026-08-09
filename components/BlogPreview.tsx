@@ -23,44 +23,49 @@ export default function BlogPreview({ posts }: Props) {
           </Link>
         </div>
 
-        <div className="mb-10 p-8 rounded-[2rem] border border-accent/15 bg-surface/30 shadow-[0_40px_120px_rgba(0,0,0,0.18)]">
-          <div className="flex items-center gap-3 text-sm uppercase tracking-[0.35em] text-accent mb-6">
-            <span>✨ Contenido con propósito</span>
+        {/* Featured project */}
+        <div className="mb-8 p-8 border border-accent/20 bg-surface/80 hover:bg-surface shadow-sm hover:shadow-md transition-all duration-500 group">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-accent text-xs tracking-widest uppercase">✨ Proyecto reciente</span>
           </div>
-          <p className="text-muted leading-relaxed max-w-3xl">
-            Publica noticias, proyectos y casos de estudio. Añade título, descripción, imagen y texto optimizado para SEO sin tocar el código.
+          <h3 className="heading-md mb-3 group-hover:text-accent transition-colors duration-300">
+            Web para Lola Olmedo, autora de libros infantiles
+          </h3>
+          <p className="text-muted text-sm leading-relaxed mb-6 max-w-2xl">
+            Diseño y desarrollo de la web oficial de Lola Olmedo, educadora e ilustradora con cinco
+            publicaciones en Amazon. Una página que refleja la ternura y creatividad de su obra:
+            presentación de libros, sección sobre la autora y formulario de contacto directo.
           </p>
+          <a
+            href="https://lolaolmedoautora.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost text-sm"
+          >
+            Ver el proyecto →
+          </a>
         </div>
 
+        {/* Blog posts grid */}
         <ul className="grid md:grid-cols-3 gap-6">
           {posts.map((post) => (
             <li key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group block h-full overflow-hidden rounded-[2rem] border border-border bg-surface/20 shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-all duration-500 hover:border-accent/40 hover:bg-surface/50"
+                className="group block h-full p-6 border border-border hover:border-accent/40 transition-all duration-500 bg-surface/80 hover:bg-surface shadow-sm hover:shadow-md"
               >
-                {post.image ? (
-                  <div
-                    className="h-48 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${post.image})` }}
-                  />
-                ) : (
-                  <div className="h-48 bg-gradient-to-br from-accent/10 via-transparent to-surface" />
-                )}
-                <div className="p-6">
-                  <span className="section-label text-[10px] mb-4 block">{post.category}</span>
-                  <h3 className="font-body font-semibold text-text mb-3 leading-snug group-hover:text-accent transition-colors duration-300">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-muted leading-relaxed mb-6 line-clamp-3">
-                    {post.description}
-                  </p>
-                  <div className="flex items-center justify-between gap-4 text-xs text-muted">
-                    <span>{post.readingTime}</span>
-                    <span className="text-accent text-sm group-hover:translate-x-1 transition-transform duration-300 inline-block">
-                      →
-                    </span>
-                  </div>
+                <span className="section-label text-[10px] mb-4 block">{post.category}</span>
+                <h3 className="font-body font-semibold text-text mb-3 leading-snug group-hover:text-accent transition-colors duration-300">
+                  {post.title}
+                </h3>
+                <p className="text-sm text-muted leading-relaxed mb-6 line-clamp-3">
+                  {post.description}
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted">{post.readingTime}</span>
+                  <span className="text-accent text-sm group-hover:translate-x-1 transition-transform duration-300 inline-block">
+                    →
+                  </span>
                 </div>
               </Link>
             </li>

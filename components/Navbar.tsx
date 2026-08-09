@@ -29,7 +29,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-bg/90 backdrop-blur-md border-b border-border'
+          ? 'bg-surface/90 backdrop-blur-md border-b border-border shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -85,7 +85,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-          open ? 'max-h-96 bg-bg/95 backdrop-blur-md border-b border-border' : 'max-h-0'
+          open ? 'max-h-96 bg-surface/95 backdrop-blur-md border-b border-border shadow-sm' : 'max-h-0'
         }`}
       >
         <ul className="px-6 pb-6 pt-2 flex flex-col gap-4">

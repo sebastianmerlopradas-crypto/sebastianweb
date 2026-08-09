@@ -16,24 +16,23 @@
 
   body {
     @apply bg-bg text-text font-body;
-    background-color: #070707;
-    background-image:
-      radial-gradient(circle at 10% 10%, rgba(201,169,110,0.14), transparent 16%),
-      radial-gradient(circle at 90% 5%, rgba(86, 139, 255, 0.08), transparent 18%),
-      radial-gradient(circle at 55% 85%, rgba(201,169,110,0.09), transparent 28%),
-      linear-gradient(180deg, #09090d 0%, #070709 40%, #050506 100%);
+    isolation: isolate;
+    background:
+      radial-gradient(ellipse 80% 42% at 50% -18%, rgba(186, 230, 253, 0.2) 0%, transparent 72%),
+      linear-gradient(180deg, #ffffff 0%, #f7fbfc 48%, #eef7fa 100%);
+    min-height: 100vh;
   }
 
   ::selection {
-    background: rgba(201,169,110,0.35);
-    color: #f0ece4;
+    background: rgba(2, 132, 199, 0.18);
+    color: #172f3a;
   }
 
   /* Scrollbar */
   ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: #080808; }
-  ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #c9a96e; }
+  ::-webkit-scrollbar-track { background: #f7fbfc; }
+  ::-webkit-scrollbar-thumb { background: #c8dce4; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
 }
 
 @layer components {
@@ -58,22 +57,128 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 text-sm font-medium tracking-wide text-bg
-           bg-gradient-to-r from-accent to-accent-light shadow-[0_20px_60px_rgba(201,169,110,0.25)]
-           hover:brightness-110 transition-all duration-300 ease-out;
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-contrast text-sm font-medium tracking-wide
+           hover:bg-accent-light transition-all duration-300 ease-out;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 px-6 py-3 border border-white/10 text-text text-sm font-medium tracking-wide bg-white/5
-           hover:border-accent hover:text-accent transition-all duration-300 ease-out;
-  }
-
-  .glass-panel {
-    @apply rounded-[2rem] bg-white/5 border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.25)] backdrop-blur-xl;
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-border bg-surface/70 text-text text-sm font-medium
+           tracking-wide hover:border-accent hover:text-accent transition-all duration-300 ease-out;
   }
 
   .divider {
     @apply w-12 h-px bg-accent;
+  }
+
+  .parallax-scene {
+    --parallax-slow: 0px;
+    --parallax-medium: 0px;
+    --parallax-fast: 0px;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .parallax-layer,
+  .parallax-greeting,
+  .parallax-bubble {
+    position: absolute;
+    will-change: transform;
+  }
+
+  .parallax-layer--wash {
+    inset: -12%;
+    transform: translate3d(0, var(--parallax-slow), 0);
+    background:
+      radial-gradient(ellipse 44% 30% at 12% 18%, rgba(56, 189, 248, 0.12), transparent 68%),
+      radial-gradient(ellipse 36% 24% at 86% 10%, rgba(224, 242, 254, 0.48), transparent 72%),
+      radial-gradient(ellipse 44% 30% at 74% 86%, rgba(125, 211, 252, 0.12), transparent 70%);
+  }
+
+  .parallax-layer--sun {
+    top: 8%;
+    right: 11%;
+    width: clamp(9rem, 18vw, 16rem);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    opacity: 0.46;
+    transform: translate3d(0, var(--parallax-slow), 0);
+    background:
+      radial-gradient(circle, rgba(255, 255, 255, 0.96) 0 31%, rgba(224, 242, 254, 0.72) 32% 48%, transparent 70%);
+    box-shadow: 0 0 90px rgba(125, 211, 252, 0.28);
+  }
+
+  .parallax-layer--waves {
+    left: -12%;
+    right: -12%;
+    bottom: -9rem;
+    height: min(34rem, 50vh);
+    opacity: 0.38;
+    transform: translate3d(0, var(--parallax-medium), 0);
+    background:
+      radial-gradient(72rem 18rem at 14% 0%, rgba(255, 255, 255, 0.92) 0 39%, transparent 40%),
+      radial-gradient(72rem 18rem at 54% 7%, rgba(224, 242, 254, 0.88) 0 39%, transparent 40%),
+      radial-gradient(72rem 18rem at 94% 0%, rgba(186, 230, 253, 0.6) 0 39%, transparent 40%),
+      linear-gradient(180deg, rgba(241, 250, 253, 0.68), rgba(125, 211, 252, 0.14));
+  }
+
+  .parallax-layer--shimmer {
+    inset: 0;
+    opacity: 0.22;
+    transform: translate3d(0, var(--parallax-fast), 0) rotate(-8deg);
+    background-image:
+      linear-gradient(115deg, transparent 0 43%, rgba(255, 255, 255, 0.58) 44%, transparent 46% 100%),
+      linear-gradient(115deg, transparent 0 58%, rgba(2, 132, 199, 0.07) 59%, transparent 61% 100%);
+    background-size: 210px 210px, 320px 320px;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 76%, transparent 100%);
+  }
+
+  .parallax-greeting {
+    top: 23%;
+    left: 50%;
+    width: min(68rem, calc(100vw - 2rem));
+    transform: translate3d(-50%, var(--parallax-fast), 0);
+    color: rgba(23, 47, 58, 0.12);
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 8vw, 8.5rem);
+    font-weight: 500;
+    line-height: 0.92;
+    text-align: center;
+    text-wrap: balance;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.78), 0 18px 70px rgba(2, 132, 199, 0.12);
+  }
+
+  .parallax-bubble {
+    border-radius: 999px;
+    border: 1px solid rgba(186, 230, 253, 0.36);
+    background: radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.9), rgba(224, 242, 254, 0.18) 42%, rgba(2, 132, 199, 0.05));
+    box-shadow: inset -12px -16px 34px rgba(2, 132, 199, 0.05), 0 18px 60px rgba(56, 189, 248, 0.08);
+  }
+
+  .parallax-bubble--one {
+    top: 31%;
+    left: 8%;
+    width: clamp(4.5rem, 8vw, 8rem);
+    aspect-ratio: 1;
+    transform: translate3d(0, var(--parallax-fast), 0);
+  }
+
+  .parallax-bubble--two {
+    right: 12%;
+    bottom: 24%;
+    width: clamp(3.5rem, 6vw, 6.5rem);
+    aspect-ratio: 1;
+    transform: translate3d(0, var(--parallax-medium), 0);
+  }
+
+  .parallax-bubble--three {
+    top: 63%;
+    left: 20%;
+    width: clamp(2.5rem, 4vw, 4rem);
+    aspect-ratio: 1;
+    transform: translate3d(0, var(--parallax-slow), 0);
   }
 
   /* Grain texture overlay */
@@ -85,6 +190,49 @@
     opacity: 0.035;
     z-index: 9999;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+}
+
+@media (max-width: 768px) {
+  .parallax-layer--sun {
+    top: 10%;
+    right: -2rem;
+    opacity: 0.5;
+  }
+
+  .parallax-layer--waves {
+    bottom: -6rem;
+    height: 22rem;
+  }
+
+  .parallax-layer--shimmer {
+    background-size: 150px 150px, 230px 230px;
+    opacity: 0.24;
+  }
+
+  .parallax-greeting {
+    top: 18%;
+    color: rgba(23, 47, 58, 0.1);
+  }
+
+  .parallax-bubble--one {
+    left: -1rem;
+  }
+
+  .parallax-bubble--three {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer,
+  .parallax-greeting,
+  .parallax-bubble {
+    transform: none !important;
+  }
+
+  .parallax-greeting {
+    transform: translateX(-50%) !important;
   }
 }
 

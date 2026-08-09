@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function SeoText() {
   return (
-    <section className="py-32 border-t border-border bg-surface/20" aria-label="Información sobre los servicios">
+    <section className="py-32 border-t border-border bg-surface/55" aria-label="Información sobre los servicios">
       <div className="max-w-6xl mx-auto px-6">
         <div className="max-w-3xl">
           <h2 className="heading-md mb-6">

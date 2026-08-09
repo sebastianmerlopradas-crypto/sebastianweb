@@ -4,12 +4,11 @@ const legalLinks = [
   { href: '/aviso-legal', label: 'Aviso legal' },
   { href: '/privacidad', label: 'Privacidad' },
   { href: '/cookies', label: 'Cookies' },
-  { href: '/admin', label: 'Admin' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-bg">
+    <footer className="relative z-10 border-t border-border bg-surface/80 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           {/* Brand */}

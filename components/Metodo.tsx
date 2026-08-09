@@ -57,7 +57,7 @@ export default function Metodo() {
           {features.map(({ icon, title, description }) => (
             <div
               key={title}
-              className="group p-8 border border-border hover:border-accent/40 transition-all duration-500 bg-surface/30 hover:bg-surface/60"
+              className="group p-8 border border-border hover:border-accent/40 transition-all duration-500 bg-surface/80 hover:bg-surface shadow-sm hover:shadow-md"
             >
               <span className="text-2xl mb-4 block" aria-hidden="true">
                 {icon}
