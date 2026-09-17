@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react'
 
+const leaves = Array.from({ length: 18 }, (_, index) => index)
+
 export default function ParallaxBackground() {
   const sceneRef = useRef<HTMLDivElement>(null)
 
@@ -41,14 +43,13 @@ export default function ParallaxBackground() {
 
   return (
     <div ref={sceneRef} className="parallax-scene" aria-hidden="true">
-      <div className="parallax-layer parallax-layer--wash" />
-      <div className="parallax-layer parallax-layer--sun" />
-      <div className="parallax-layer parallax-layer--waves" />
-      <div className="parallax-layer parallax-layer--shimmer" />
-      <div className="parallax-greeting">Sebastianweb os desea un feliz verano</div>
-      <div className="parallax-bubble parallax-bubble--one" />
-      <div className="parallax-bubble parallax-bubble--two" />
-      <div className="parallax-bubble parallax-bubble--three" />
+      <div className="parallax-autumn-sky" />
+      <div className="parallax-autumn-hills" />
+      <div className="parallax-autumn-tree" />
+      <div className="parallax-autumn-leaves">
+        {leaves.map((leaf) => <span className="parallax-autumn-leaf" key={leaf} />)}
+      </div>
+      <div className="parallax-greeting">Sebastianweb os desea un feliz otoño</div>
     </div>
   )
 }
